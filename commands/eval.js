@@ -43,7 +43,7 @@ exports.run = (client, message, args, sql, Discord, config) =>
 
         e.setColor(0x00FF00)
          .setAuthor(client.user.username, client.user.avatarURL)
-         .setTitle('Eval complete')
+         .setTitle('Eval complete!')
          .addField('Input:', `\`\`\`${combineArgs(1, args)}\`\`\``)
          .addField('Result:', `\`\`\`${result}\`\`\``)
          .addField('Type:', `\`\`\`${typeof(result)}\`\`\``)
