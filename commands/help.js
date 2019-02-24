@@ -12,7 +12,7 @@ exports.run = (client, message, args, sql, Discord, config) =>
                                         `\n\`Moderation commands:\`  ban  |  invitepurge  |  kick  |  lockdown  |  mute  |  settings  |  unlock  |  unmute` +                                          
                                         `\n ` +
                                         `\nDo \`${pre}help [command name]\` for more information about a specific command, i.e. \`${pre}help kick\`` +
-                                        `\nDon't know what SecurityBot's prefix in a server is? Simply mention SecurityBot and say "what's your prefix?"`);
+                                        `\nDon't know what SecurityBot's prefix in a server is? Simply ping SecurityBot and say "what's your prefix?"`);
         } else if(args.length > 2)
         {
             return message.reply('please only ask about one command at a time!');
