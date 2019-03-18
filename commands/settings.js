@@ -4,7 +4,7 @@ exports.run = (client, message, args, sql, Discord, config) =>
 
     sql.get(`SELECT * FROM settings WHERE serverID = "${message.guild.id}"`).then(row => 
     {
-        if(args[1] === 'view')
+        if(args[1] === 'view' || args.length === 1)
         {
             let logChannel = 'None set.';
             let automute = 'false';

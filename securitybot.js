@@ -12,9 +12,7 @@ var portal =
 {
     portalOn: false,
     destination: null
-    //typing: false
 }; //Creates an object we store portal data in
-
 
 //     ~~<{ FUNCTIONS }>~~     //
 
@@ -54,7 +52,6 @@ function dmMods(message, text) //DMs all mods a message
         }
     });
 }
-
 
 //     ~~<{ EVENTS }>~~     //
 
@@ -159,7 +156,7 @@ client.on('message', message =>
             //     ~~<{ CHECK TIMESTAMPS }>~~     //
             for(i = mutedList[muteForm].timestamps.length - 1; i >= 0; i --) //Counts down so we don't mess up data we haven't checked yet
             {
-                if(now - mutedList[muteForm].timestamps[i] >= 30000)
+                if(now - mutedList[muteForm].timestamps[i] >= 30000) //Removes the timestamp
                 {
                     mutedList[muteForm].timestamps.splice(i, 1);
                 }
@@ -219,7 +216,6 @@ client.on('message', message =>
                     return;
                 }
 
-
                 mutedList[muteForm].isMuted = true;
 
                 message.channel.send(`**${message.author.username}** has been muted for **${row.automuteTimeout} second(s)**!`).then((msg) =>
@@ -250,7 +246,6 @@ client.on('message', message =>
                         //Deletes the permission overwrites preventing them from speaking
                         message.guild.channels.forEach((channel, id) =>
                         {
-                            //let override = message.author.permissionOverwrites.get(id);
                             let override = channel.permissionOverwrites.get(message.author.id);
                             if(override) override.delete();
                         });
@@ -324,7 +319,6 @@ client.on('guildCreate', guild =>
     });
 });
 
-
 //When a message is deleted
 client.on('messageDelete', message =>
 {
@@ -372,8 +366,7 @@ client.on('messageUpdate', (oldMessage, newMessage) =>
 //When a member joins a guild
 client.on('guildMemberAdd', member =>
 {
-    //Logs the member joining
-    try
+    try //Logs the member joining
     {
         sql.get(`SELECT * FROM settings WHERE serverID = "${member.guild.id}"`).then(row =>
         {
@@ -392,8 +385,7 @@ client.on('guildMemberAdd', member =>
 //When a member leaves a guild
 client.on('guildMemberRemove', member =>
 {
-    //Logs the member leaving
-    try
+    try //Logs the member leaving
     {
         sql.get(`SELECT * FROM settings WHERE serverID = "${member.guild.id}"`).then(row =>
         {
@@ -412,7 +404,6 @@ client.on('guildMemberRemove', member =>
 //When a user starts typing
 client.on('typingStart', (channel, user) =>
 {
-    //Used to make the bot type in the channel the portal is open to
     if(portal.portalOn && portal.destination != null && channel.type === 'dm' && user.id === config.ownerID) //If it's me that's typing, the portal is open to a channel, and it's in a DM
     {
         portal.destination.startTyping(); //Starts typing
@@ -422,7 +413,6 @@ client.on('typingStart', (channel, user) =>
 //When a user stops typing
 client.on('typingStop', (channel, user) =>
 {
-    //Used to make the bot stop typing in the channel the portal is open to if I stop typing
     if(portal.portalOn && portal.destination != null && channel.type === 'dm' && user.id === config.ownerID) //If it's me that stopped typing typing, the portal is open to a channel, and it's in a DM
     {
         portal.destination.stopTyping(); //Stops typing
